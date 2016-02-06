@@ -2,8 +2,8 @@
 Repositório com os algorítmos desenvolvidos na disciplina de Estrutura de Dados da Fanor 2016.1
 
 <b>Índice de Algoritmos:</b></br>
- - BuscaLinear
- - BuscaBinaria
+ - BuscaLinear (Aula: 05/02/2016)
+ - BuscaBinaria (Aula: 05/02/2016)
  
 <b>Ementa da Disciplina:</b></br>
   - Algoritmos
@@ -25,3 +25,4 @@ Repositório com os algorítmos desenvolvidos na disciplina de Estrutura de Dado
     - Árvores B
   - Grafos
 
+<i>Prof.: Adriano Patrick Cunha</i>
