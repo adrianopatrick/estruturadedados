@@ -7,28 +7,27 @@ import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import br.edu.fanor.estruturadedados.utils.ArquivoUtils;
+
 public class BuscaLinearTest {
 
-	private static BuscaLinear buscador;
 	private static int[] vetor;
 
 	@BeforeClass
 	public static void init() {
-		buscador = new BuscaLinear();
 		try {
 			vetor = ArquivoUtils.retornaVetor("resources/large");
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 			e.printStackTrace();
 		}
-
 	}
 
 	@Test
 	public void testBuscarMelhorCaso() {
 		Instant agora = Instant.now();
 
-		Integer indice = buscador.buscar(vetor, 489910);
+		Integer indice = BuscaLinear.buscar(vetor, 489910);
 
 		Instant fim = Instant.now();
 		Duration duracao = Duration.between(agora, fim);
@@ -42,7 +41,7 @@ public class BuscaLinearTest {
 	public void testBuscarCasoMedio() {
 		Instant agora = Instant.now();
 
-		Integer indice = buscador.buscar(vetor, 524610);
+		Integer indice = BuscaLinear.buscar(vetor, 524610);
 
 		Instant fim = Instant.now();
 		Duration duracao = Duration.between(agora, fim);
@@ -56,7 +55,7 @@ public class BuscaLinearTest {
 	public void testBuscarPiorCaso() {
 		Instant agora = Instant.now();
 
-		Integer indice = buscador.buscar(vetor, 5);
+		Integer indice = BuscaLinear.buscar(vetor, 5);
 
 		Instant fim = Instant.now();
 		Duration duracao = Duration.between(agora, fim);
