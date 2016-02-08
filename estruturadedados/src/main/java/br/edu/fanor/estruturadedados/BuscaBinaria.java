@@ -19,6 +19,8 @@ public class BuscaBinaria {
 	 * @return índice onde a chave de busca foi encontrada
 	 */
 	public static Integer buscar(int[] vetor, int chave, boolean isOrdenado) {
+		//se entrar no if, a complexidade será acrescida da complexidade
+		//de ordenação o array.
 		if(!isOrdenado){
 			Arrays.sort(vetor);
 		}
