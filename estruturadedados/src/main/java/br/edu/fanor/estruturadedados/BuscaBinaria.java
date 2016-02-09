@@ -1,4 +1,4 @@
-package br.edu.fanor.estruturadedados.busca;
+package br.edu.fanor.estruturadedados;
 
 import java.util.Arrays;
 
