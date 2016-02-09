@@ -1,4 +1,4 @@
-package br.edu.fanor.estruturadedados;
+package br.edu.fanor.estruturadedados.busca;
 
 /**
  * Código que realiza a busca linear

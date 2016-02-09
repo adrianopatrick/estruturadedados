@@ -7,6 +7,7 @@ import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import br.edu.fanor.estruturadedados.busca.BuscaLinear;
 import br.edu.fanor.estruturadedados.utils.ArquivoUtils;
 
 public class BuscaLinearTest {
