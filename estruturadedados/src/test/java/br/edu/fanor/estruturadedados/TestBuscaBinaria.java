@@ -9,14 +9,14 @@ import org.junit.Test;
 
 import br.edu.fanor.estruturadedados.utils.ArquivoUtils;
 
-public class BuscaLinearTest {
+public class TestBuscaBinaria {
 
 	private static int[] vetor;
 
 	@BeforeClass
 	public static void init() {
 		try {
-			vetor = ArquivoUtils.retornaVetor("resources/large");
+			vetor = ArquivoUtils.retornaVetor("resources/large-sorted");
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 			e.printStackTrace();
@@ -27,35 +27,35 @@ public class BuscaLinearTest {
 	public void testBuscarMelhorCaso() {
 		Instant agora = Instant.now();
 
-		Integer indice = BuscaLinear.buscar(vetor, 489910);
-
+		Integer indice = BuscaBinaria.buscar(vetor, 0, true);
+		
 		Instant fim = Instant.now();
 		Duration duracao = Duration.between(agora, fim);
 		System.out.println("[testBuscarMelhorCaso]" + duracao.toMillis() + " ms.");
 
 		Assert.assertTrue(indice != null);
-		Assert.assertEquals(0, indice.intValue());
+		Assert.assertEquals(2, indice.intValue());
 	}
 
 	@Test
 	public void testBuscarCasoMedio() {
 		Instant agora = Instant.now();
 
-		Integer indice = BuscaLinear.buscar(vetor, 524610);
+		Integer indice = BuscaBinaria.buscar(vetor, 555587, true);
 
 		Instant fim = Instant.now();
 		Duration duracao = Duration.between(agora, fim);
 		System.out.println("[testBuscarCasoMedio]" + duracao.toMillis() + " ms.");
 
 		Assert.assertTrue(indice != null);
-		Assert.assertEquals(555025, indice.intValue());
+		Assert.assertEquals(555027, indice.intValue());
 	}
 
 	@Test
 	public void testBuscarPiorCaso() {
 		Instant agora = Instant.now();
 
-		Integer indice = BuscaLinear.buscar(vetor, 5);
+		Integer indice = BuscaBinaria.buscar(vetor, 5, true);
 
 		Instant fim = Instant.now();
 		Duration duracao = Duration.between(agora, fim);
@@ -63,5 +63,4 @@ public class BuscaLinearTest {
 
 		Assert.assertTrue(indice == null);
 	}
-
 }
