@@ -4,6 +4,10 @@ Repositório com os algorítmos desenvolvidos na disciplina de Estrutura de Dado
 <b>Índice de Algoritmos:</b></br>
  - BuscaLinear (Aula: 05/02/2016)
  - BuscaBinaria (Aula: 05/02/2016)
+ - Fatorial (Aula: 12/02/2016)
+ - Fibonacci (Aula: 12/02/2016)
+ - MergeSort (Aula: 12/02/2016)
+ - Hanoi (Aula: 12/02/2016)
  
 <b>Ementa da Disciplina:</b></br>
   - Algoritmos
@@ -24,5 +28,8 @@ Repositório com os algorítmos desenvolvidos na disciplina de Estrutura de Dado
     - Árvores AVL
     - Árvores B
   - Grafos
+    - Busca em Largura
+    - Busca em Profundidade
+    - Árvore Geradora Mínima e Algoritmo de Kruskal
 
 <i>Prof.: Adriano Patrick Cunha</i>
