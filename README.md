@@ -27,6 +27,7 @@ Repositório com os algorítmos desenvolvidos na disciplina de Estrutura de Dado
     - Árvores Binárias
     - Árvores AVL
     - Árvores B
+  - Tabelas de Espalhamento(Dispersão)
   - Grafos
     - Busca em Largura
     - Busca em Profundidade
