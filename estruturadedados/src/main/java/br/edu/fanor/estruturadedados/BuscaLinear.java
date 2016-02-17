@@ -15,9 +15,9 @@ public class BuscaLinear {
 	 * @param chave de busca
 	 * @return índice onde a chave de busca foi encontrada
 	 * */
-	public static Integer buscar(int[] vetor, int chave){
+	public static Integer buscar(Object[] vetor, Object chave){
 		for (int i = 0; i < vetor.length; i++) {
-			if(vetor[i] == chave){
+			if(vetor[i].equals(chave)){
 				return i;
 			}
 		}

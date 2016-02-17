@@ -11,7 +11,7 @@ import br.edu.fanor.estruturadedados.utils.ArquivoUtils;
 
 public class TestBuscaLinear {
 
-	private static int[] vetor;
+	private static Integer[] vetor;
 
 	@BeforeClass
 	public static void init() {

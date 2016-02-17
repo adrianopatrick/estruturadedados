@@ -13,11 +13,11 @@ import java.io.LineNumberReader;
  * */
 public class ArquivoUtils {
 
-	public static int[] retornaVetor(String path) throws Exception {
+	public static Integer[] retornaVetor(String path) throws Exception {
 
 		//as linhas do arquivo começam em 1, porém o vetor inicia em 0(zero)
 		//por isso soma mais 1 a quantidade de linhas para o tamanho do vetor
-		int[] vetor = new int[retornaQuantidadeDeLinhasDoArquivo(path) + 1];
+		Integer[] vetor = new Integer[retornaQuantidadeDeLinhasDoArquivo(path) + 1];
 
 		File file = new File(ArquivoUtils.class.getResource(path).getFile());
 		try (FileReader fr = new FileReader(file); BufferedReader br = new BufferedReader(fr);) {

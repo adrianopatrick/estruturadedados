@@ -1,6 +1,7 @@
 package br.edu.fanor.estruturadedados;
 
 import java.util.Arrays;
+import java.util.Comparator;
 
 /**
  * Código que realiza a busca binária Complexidade: O(lg n)
@@ -18,13 +19,13 @@ public class BuscaBinaria {
 	 * @param chave de busca
 	 * @return índice onde a chave de busca foi encontrada
 	 */
-	public static Integer buscar(int[] vetor, int chave, boolean isOrdenado) {
+	public static Integer buscar(Object[] vetor, Object chave, boolean isOrdenado, Comparator<Object> comparator) {
 		//se entrar no if, a complexidade será acrescida da complexidade
 		//de ordenação o array.
 		if(!isOrdenado){
-			Arrays.sort(vetor);
+			Arrays.sort(vetor, comparator);
 		}
-		return buscar(vetor, 0, vetor.length - 1, chave);
+		return buscar(vetor, 0, vetor.length - 1, chave, comparator);
 	}
 
 	/**
@@ -35,20 +36,22 @@ public class BuscaBinaria {
 	 * @param inicio da lista a ser considerado
 	 * @param final da lista a ser considerado.
 	 * @param chave de busca
+	 * @param comparator base para busca
 	 * @return indice onde a chave de busca foi encontrada.
 	 * */
-	public static Integer buscar(int[] vetor, int inicio, int fim, int chave) {
+	private static Integer buscar(Object[] vetor, int inicio, int fim, Object chave, Comparator<Object> comparator) {
 		if(fim < inicio){
 			return null;
 		} else {
 			int media = (inicio + fim) / 2;
-			if(vetor[media] == chave){
+			if(vetor[media].equals(chave)){
 				return media;
-			} else if (vetor[media] > chave){
-				return buscar(vetor, inicio, media - 1, chave);
+			} else if (comparator.compare(vetor[media],chave) > 0){
+				return buscar(vetor, inicio, media - 1, chave, comparator);
 			} else {
-				return buscar(vetor, media + 1, fim, chave);
+				return buscar(vetor, media + 1, fim, chave, comparator);
 			}
 		}
 	}
+	
 }

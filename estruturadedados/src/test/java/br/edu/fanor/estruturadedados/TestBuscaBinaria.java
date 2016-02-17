@@ -11,7 +11,7 @@ import br.edu.fanor.estruturadedados.utils.ArquivoUtils;
 
 public class TestBuscaBinaria {
 
-	private static int[] vetor;
+	private static Integer[] vetor;
 
 	@BeforeClass
 	public static void init() {
@@ -26,8 +26,7 @@ public class TestBuscaBinaria {
 	@Test
 	public void testBuscarMelhorCaso() {
 		Instant agora = Instant.now();
-
-		Integer indice = BuscaBinaria.buscar(vetor, 0, true);
+		Integer indice = BuscaBinaria.buscar(vetor, 0, true, (i1, i2) -> ((Integer)i1).compareTo(((Integer)i2)));
 		
 		Instant fim = Instant.now();
 		Duration duracao = Duration.between(agora, fim);
@@ -41,7 +40,7 @@ public class TestBuscaBinaria {
 	public void testBuscarCasoMedio() {
 		Instant agora = Instant.now();
 
-		Integer indice = BuscaBinaria.buscar(vetor, 555587, true);
+		Integer indice = BuscaBinaria.buscar(vetor, 555587, true, (i1, i2) -> ((Integer)i1).compareTo(((Integer)i2)));
 
 		Instant fim = Instant.now();
 		Duration duracao = Duration.between(agora, fim);
@@ -55,7 +54,7 @@ public class TestBuscaBinaria {
 	public void testBuscarPiorCaso() {
 		Instant agora = Instant.now();
 
-		Integer indice = BuscaBinaria.buscar(vetor, 5, true);
+		Integer indice = BuscaBinaria.buscar(vetor, 5, true, (i1, i2) -> ((Integer)i1).compareTo(((Integer)i2)));
 
 		Instant fim = Instant.now();
 		Duration duracao = Duration.between(agora, fim);
