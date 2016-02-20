@@ -25,5 +25,18 @@ public interface Lista<E> {
 	 * @return E armazenado no índice i
 	 * */
 	E get(int i);
+	
+	/**Metodo que retorna true caso a lista esteja vazia
+	 * e false caso tenha pelo menos 1 elemento.
+	 * @return <tt>true</tt> para lista vazia
+	 * */
+	boolean isEmpty();
+	
+	/**Metodo que retorna <tt>true</tt> caso a lista contenha 
+	 * um elemento específico.
+	 * @param e, o elemento a ser buscado.
+	 * @return se encontrou o elemento
+	 * */
+	boolean contains(E e);
 
 }
