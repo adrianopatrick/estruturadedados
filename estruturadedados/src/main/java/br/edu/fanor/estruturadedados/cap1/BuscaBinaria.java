@@ -17,7 +17,9 @@ public class BuscaBinaria {
 	 * 
 	 * @param vetor de inteiros
 	 * @param chave de busca
-	 * @return índice onde a chave de busca foi encontrada
+	 * @param isOrdenado - informando se a lista já está ordenada
+	 * @param comparator - utilizado para comparar objetos
+	 * @return Integer - índice onde a chave de busca foi encontrada
 	 */
 	public static Integer buscar(Object[] vetor, Object chave, boolean isOrdenado, Comparator<Object> comparator) {
 		//se entrar no if, a complexidade será acrescida da complexidade

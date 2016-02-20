@@ -1,43 +1,34 @@
 package br.edu.fanor.estruturadedados.cap2;
 
 /**
- * Algoritmo que implementa uma Lista simples
- * Características:
- * 	- Rápida
- * 	- Permite repetidos
- * 	- Tamanho Fixo
- *  - Não é Thread-Safe
+ * Algoritmo que implementa uma Lista simples Caracteristicas: - Rapida -
+ * Permite repetidos - Tamanho Fixo - Nao Thread-Safe
  * 
  * @author patrick.cunha
  * @since 19/02/2016
- * */
-public class ListaSRF implements Lista {
+ */
+public class ListaSRF<E> implements Lista<E> {
 
-	private Object[] objetos = new Object[100];
+	private Object[] elementos = new Object[100];
 	private int index = 0;
-	
+
 	@Override
-	public void add(Object obj) {
-		objetos[index] = obj;
-		index++;
+	public void add(E e) {
+		elementos[index++] = e;
 	}
 
 	@Override
-	public void add(int i, Object obj) {
-		if(i < objetos.length){
-			if(existeExpacoLivre()){
-				if(objetos[i] != null){
-					for (int j = index; j > i; j--) {
-						objetos[j] = objetos[j - 1];
-					}
-				}
-				objetos[i] = obj; 
-			} else {
-				throw new StackOverflowError("Sem espaço, lista totalmente preenchida.");
+	public void add(int i, E e) {
+		validaIndice(i);
+		validaEspacoLivre();
+		if (elementos[i] != null) {
+			for (int j = index; j > i; j--) {
+				elementos[j] = elementos[j - 1];
 			}
-		} else {
-			throw new ArrayIndexOutOfBoundsException("índice maior que o tamanho da lista.");
 		}
+		elementos[i] = e;
+		index++;
+
 	}
 
 	@Override
@@ -46,17 +37,22 @@ public class ListaSRF implements Lista {
 	}
 
 	@Override
-	public Object get(int i) {
-		if(i < objetos.length){
-			return objetos[i];
-		} else {
-			throw new ArrayIndexOutOfBoundsException("índice maior que o tamanho da lista.");
-		}
-		
+	@SuppressWarnings("unchecked")
+	public E get(int i) {
+		validaIndice(i);
+		return (E) elementos[i];
 	}
-	
-	private boolean existeExpacoLivre(){
-		return (index == objetos.length) ? false : true;
+
+	private void validaEspacoLivre() {
+		if (index >= elementos.length) {
+			throw new StackOverflowError("Sem espaço, lista totalmente preenchida.");
+		}
+	}
+
+	private void validaIndice(int index) {
+		if (index < 0 || index >= elementos.length) {
+			throw new ArrayIndexOutOfBoundsException("Índice: " + index + ", Tamanho:: " + elementos.length);
+		}
 	}
 	
 }

@@ -9,9 +9,12 @@ package br.edu.fanor.estruturadedados.cap1;
 public class Hanoi {
 
 	/**
-	 * Método que resolve a torre de hanoi pra n discos.
+	 * Metodo que resolve a torre de hanoi pra n discos.
 	 * 
-	 * @param numero de discos(n), apelido para as torres de origem, auxiliar e destino
+	 * @param n - numero de discos
+	 * @param origem - primeira torre
+	 * @param auxiliar - segunda torre
+	 * @param destino - terceira torre
 	 * */
 	public static void hanoi(int n, char origem, char auxiliar, char destino) {
 		if (n == 1) {

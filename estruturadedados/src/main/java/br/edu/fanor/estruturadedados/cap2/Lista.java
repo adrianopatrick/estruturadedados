@@ -1,31 +1,29 @@
 package br.edu.fanor.estruturadedados.cap2;
 
-public interface Lista {
+public interface Lista<E> {
 	
-	/**Método que adiciona um objeto ao final da lista
-	 * @param obj a ser adicionado
-	 * @return void
+	/**Metodo que adiciona um objeto ao final da lista
+	 * @param e a ser adicionado
 	 * */
-	void add(Object obj);
+	void add(E e);
 	
-	/**Método que adiciona um objeto numa posição específica
+	/**Metodo que adiciona um objeto numa posição especifica
 	 * @param i indice do vetor onde o obj deve ser adicionado
-	 * @param obj a ser adicionado
-	 * @return void
+	 * @param e a ser adicionado
 	 * */
-	void add(int i, Object obj);
+	void add(int i, E e);
 	
-	/**Método que retorna o número de elementos
+	/**Metodo que retorna o número de elementos
 	 * dentro da lista.
 	 * @return qtda itens da lista
 	 * */
 	int size();
 	
-	/**Método que retorna o objeto da lista que
+	/**Metodo que retorna o objeto da lista que
 	 * está armazenado no índice i
 	 * @param i índice do obj a ser retornado
-	 * @return obj armazenado no índice i
+	 * @return E armazenado no índice i
 	 * */
-	Object get(int i);
+	E get(int i);
 
 }
