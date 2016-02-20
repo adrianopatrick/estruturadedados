@@ -1,4 +1,4 @@
-package br.edu.fanor.estruturadedados;
+package br.edu.fanor.estruturadedados.cap1;
 
 import java.util.Arrays;
 import java.util.Comparator;

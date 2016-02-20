@@ -1,4 +1,4 @@
-package br.edu.fanor.estruturadedados;
+package br.edu.fanor.estruturadedados.cap1;
 
 /**
  * Classe que resolve o problema da torre de Hanoi

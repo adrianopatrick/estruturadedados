@@ -1,4 +1,4 @@
-package br.edu.fanor.estruturadedados;
+package br.edu.fanor.estruturadedados.cap1;
 
 /**
  * Classe que realiza o calculo do fatorial de forma recursiva, 

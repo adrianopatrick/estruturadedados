@@ -3,6 +3,8 @@ package br.edu.fanor.estruturadedados;
 import org.junit.Assert;
 import org.junit.Test;
 
+import br.edu.fanor.estruturadedados.cap1.Fatorial;
+
 public class TestFatorial {
 
 	@Test

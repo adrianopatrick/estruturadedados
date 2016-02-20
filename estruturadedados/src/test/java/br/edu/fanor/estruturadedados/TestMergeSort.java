@@ -3,6 +3,7 @@ package br.edu.fanor.estruturadedados;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import br.edu.fanor.estruturadedados.cap1.MergeSort;
 import br.edu.fanor.estruturadedados.utils.ArquivoUtils;
 
 public class TestMergeSort {
