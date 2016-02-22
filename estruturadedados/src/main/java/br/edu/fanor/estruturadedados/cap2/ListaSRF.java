@@ -16,6 +16,7 @@ public class ListaSRF<E> implements Lista<E> {
 
 	@Override
 	public void add(E e) {
+		validaEspacoLivre();
 		elementos[index++] = e;
 	}
 
@@ -44,27 +45,53 @@ public class ListaSRF<E> implements Lista<E> {
 		validaIndice(i);
 		return (E) elementos[i];
 	}
-	
+
 	@Override
 	public boolean isEmpty() {
 		return index == 0;
 	}
-	
+
 	@Override
 	public boolean contains(E e) {
 		return BuscaLinear.buscar(elementos, e) != null;
 	}
 
+	@SuppressWarnings("unchecked")
+	public E remove(int i) {
+		validaIndice(i);
+		
+		E elementoRemovido = (E) elementos[i];
+		for (int j = i; j < size() - 1; j++) {
+			elementos[j] = elementos[j + 1];
+		}
+		elementos[--index] = null;
+		
+		return elementoRemovido;
+	}
+	
+	@Override
+	public boolean remove(E e){
+		Integer i = BuscaLinear.buscar(elementos, e);
+		if(i != null){
+			remove(i);
+			return true;
+		} else {
+			return false;
+		}
+	}
+
 	private void validaEspacoLivre() {
 		if (index >= elementos.length) {
-			throw new StackOverflowError("Sem espaço, lista totalmente preenchida.");
+			throw new StackOverflowError(
+					"Sem espaço, lista totalmente preenchida.");
 		}
 	}
 
 	private void validaIndice(int index) {
 		if (index < 0 || index >= elementos.length) {
-			throw new ArrayIndexOutOfBoundsException("Índice: " + index + ", Tamanho:: " + elementos.length);
+			throw new ArrayIndexOutOfBoundsException(
+					"Índice: " + index + ", Tamanho:: " + elementos.length);
 		}
 	}
-	
+
 }

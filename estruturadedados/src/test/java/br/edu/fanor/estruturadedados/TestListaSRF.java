@@ -77,4 +77,19 @@ public class TestListaSRF {
 		Assert.assertFalse(alunos.contains(a2));
 	}
 	
+	@Test
+	public void testRemocao(){
+		Aluno a1 = new Aluno("N1", "Marcus");
+		Aluno a2 = new Aluno("N2", "Didi");
+		
+		Lista<Aluno> alunos = new ListaSRF<>();
+		alunos.add(a1);
+		alunos.add(0, a2);
+		
+		alunos.remove(0);
+		alunos.remove(a1);
+		
+		Assert.assertEquals(0, alunos.size());
+	}
+	
 }
