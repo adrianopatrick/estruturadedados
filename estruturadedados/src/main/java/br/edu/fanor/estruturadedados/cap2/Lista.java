@@ -38,5 +38,19 @@ public interface Lista<E> {
 	 * @return se encontrou o elemento
 	 * */
 	boolean contains(E e);
+	
+	/**Metodo que remove um elemento do array
+	 * de uma posição especificada(i)
+	 * @param i indice do elemento a ser removido
+	 * @return E elemento removido da lista
+	 * @throws ArrayIndexOutOfBoundsException {@inheritDoc}}
+	 * */
+	E remove(int i);
+	
+	/**Metodo que remove um elemento do array
+	 * @param e elemento a ser removido
+	 * @return <tt>true</tt> se o elemento foi encontrado na lista
+	 * */
+	boolean remove(E e);
 
 }

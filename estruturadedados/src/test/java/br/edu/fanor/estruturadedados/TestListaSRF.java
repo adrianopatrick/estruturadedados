@@ -2,7 +2,6 @@ package br.edu.fanor.estruturadedados;
 
 import org.junit.Assert;
 import org.junit.Test;
-import org.junit.experimental.categories.Categories.ExcludeCategory;
 
 import br.edu.fanor.estruturadedados.cap2.Aluno;
 import br.edu.fanor.estruturadedados.cap2.Lista;
@@ -15,7 +14,7 @@ public class TestListaSRF {
 		Aluno a1 = new Aluno("N1", "Marcus");
 		Aluno a2 = new Aluno("N2", "Didi");
 		
-		Lista alunos = new ListaSRF();
+		Lista<Aluno> alunos = new ListaSRF<>();
 		alunos.add(a1);
 		alunos.add(a2);
 		
@@ -27,7 +26,7 @@ public class TestListaSRF {
 		Aluno a1 = new Aluno("N1", "Marcus");
 		Aluno a2 = new Aluno("N2", "Didi");
 		
-		Lista alunos = new ListaSRF();
+		Lista<Aluno> alunos = new ListaSRF<>();
 		alunos.add(a1);
 		alunos.add(0, a2);
 		
@@ -60,7 +59,7 @@ public class TestListaSRF {
 		Aluno a1 = new Aluno("N1", "Marcus");
 		Aluno a2 = new Aluno("N2", "Didi");
 		
-		Lista alunos = new ListaSRF();
+		Lista<Aluno> alunos = new ListaSRF<>();
 		alunos.add(a1);
 		alunos.add(0, a2);
 		
@@ -72,10 +71,25 @@ public class TestListaSRF {
 		Aluno a1 = new Aluno("N1", "Marcus");
 		Aluno a2 = new Aluno("N2", "Wagner");
 		
-		Lista alunos = new ListaSRF();
+		Lista<Aluno> alunos = new ListaSRF<>();
 		alunos.add(a1);
 		
 		Assert.assertFalse(alunos.contains(a2));
+	}
+	
+	@Test
+	public void testRemocao(){
+		Aluno a1 = new Aluno("N1", "Marcus");
+		Aluno a2 = new Aluno("N2", "Didi");
+		
+		Lista<Aluno> alunos = new ListaSRF<>();
+		alunos.add(a1);
+		alunos.add(0, a2);
+		
+		alunos.remove(0);
+		alunos.remove(a1);
+		
+		Assert.assertEquals(0, alunos.size());
 	}
 	
 }
