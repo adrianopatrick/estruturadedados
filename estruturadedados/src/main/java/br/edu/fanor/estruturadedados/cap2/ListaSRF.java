@@ -33,6 +33,17 @@ public class ListaSRF<E> implements Lista<E> {
 
 	}
 
+	@SuppressWarnings("unchecked")
+	public E remove(int i) {
+		validaIndice(i);
+		E antigoElemento = (E) elementos[i];
+		for (int j = i; j < index; j++) {
+			elementos[i] = elementos[i + 1];
+		}
+		
+		return antigoElemento;
+	}
+
 	@Override
 	public int size() {
 		return index;
@@ -44,12 +55,12 @@ public class ListaSRF<E> implements Lista<E> {
 		validaIndice(i);
 		return (E) elementos[i];
 	}
-	
+
 	@Override
 	public boolean isEmpty() {
 		return index == 0;
 	}
-	
+
 	@Override
 	public boolean contains(E e) {
 		return BuscaLinear.buscar(elementos, e) != null;
@@ -66,5 +77,5 @@ public class ListaSRF<E> implements Lista<E> {
 			throw new ArrayIndexOutOfBoundsException("Índice: " + index + ", Tamanho:: " + elementos.length);
 		}
 	}
-	
+
 }
