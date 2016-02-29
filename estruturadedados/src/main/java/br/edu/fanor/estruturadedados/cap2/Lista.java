@@ -24,7 +24,7 @@ public interface Lista<E> {
 	 * @param i índice do obj a ser retornado
 	 * @return E armazenado no índice i
 	 * */
-	E get(int i);
+	Object get(int i);
 	
 	/**Metodo que retorna true caso a lista esteja vazia
 	 * e false caso tenha pelo menos 1 elemento.
@@ -45,12 +45,12 @@ public interface Lista<E> {
 	 * @return E elemento removido da lista
 	 * @throws ArrayIndexOutOfBoundsException {@inheritDoc}}
 	 * */
-	E remove(int i);
+	Object remove(int i);
 	
 	/**Metodo que remove um elemento do array
 	 * @param e elemento a ser removido
 	 * @return <tt>true</tt> se o elemento foi encontrado na lista
 	 * */
-	boolean remove(E e);
+	boolean remove(Object obj);
 
 }
