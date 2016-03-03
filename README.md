@@ -8,7 +8,8 @@ Repositório com os algorítmos desenvolvidos na disciplina de Estrutura de Dado
  - Fibonacci (Aula: 12/02/2016)
  - MergeSort (Aula: 12/02/2016)
  - Hanoi (Aula: 12/02/2016)
- - Lista Sequencial (Aula: 19/02/2016)
+ - Lista Sequencial (Aula: 19/02/2016 / 26/02/2016)
+ - Lista Simplemente Encadeada (Aula: 04/03/2016)
  
 <b>Ementa da Disciplina:</b></br>
   - Algoritmos
