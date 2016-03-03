@@ -3,8 +3,9 @@ package br.edu.fanor.estruturadedados.cap2;
 import br.edu.fanor.estruturadedados.cap1.BuscaLinear;
 
 /**
- * Algoritmo que implementa uma Lista simples Caracteristicas: - Rapida -
- * Permite repetidos - Tamanho Fixo - Nao Thread-Safe
+ * Algoritmo que implementa Lista Simples - Lista Linear em Alocação Sequencial
+ * Caracteristicas: - Rapida - Permite repetidos - Tamanho Fixo - Nao
+ * Thread-Safe
  * 
  * @author patrick.cunha
  * @since 19/02/2016
@@ -57,20 +58,20 @@ public class ListaSRF<E> implements Lista<E> {
 
 	public Object remove(int i) {
 		validaIndice(i);
-		
+
 		Object elementoRemovido = elementos[i];
 		for (int j = i; j < size() - 1; j++) {
 			elementos[j] = elementos[j + 1];
 		}
 		elementos[--index] = null;
-		
+
 		return elementoRemovido;
 	}
-	
+
 	@Override
-	public boolean remove(Object obj){
+	public boolean remove(Object obj) {
 		Integer i = BuscaLinear.buscar(elementos, obj);
-		if(i != null){
+		if (i != null) {
 			this.remove(i.intValue());
 			return true;
 		} else {
