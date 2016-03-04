@@ -11,8 +11,8 @@ package br.edu.fanor.estruturadedados.cap2;
  */
 public class ListaLRD<E> implements Lista<E> {
 
-	private No primeiro;
-	private No ultimo;
+	private No<E> primeiro;
+	private No<E> ultimo;
 	private int tamanho;
 
 	/*
@@ -22,11 +22,11 @@ public class ListaLRD<E> implements Lista<E> {
 	 */
 	@Override
 	public void add(E e) {
-		No novo = new No(e);
+		No<E> novo = new No<>(e);
 		if (this.tamanho == 0) {
 			primeiro = novo;
 		} else {
-			ultimo.setProximo(novo);
+			ultimo.proximo = novo;
 		}
 		ultimo = novo;
 		tamanho++;
@@ -40,9 +40,9 @@ public class ListaLRD<E> implements Lista<E> {
 	@Override
 	public void add(int index, E e) {
 		validaIndice(index);
-		No novo = new No(e);
+		No<E> novo = new No<>(e);
 		if (index == 0) {
-			novo.setProximo(this.primeiro);
+			novo.proximo = this.primeiro;
 			this.primeiro = novo;
 			if (this.tamanho == 0) {
 				this.ultimo = this.primeiro;
@@ -50,9 +50,9 @@ public class ListaLRD<E> implements Lista<E> {
 		} else if (index == this.tamanho) {
 			this.add(e);
 		} else {
-			No anterior = this.getNo(index - 1);
-			novo.setProximo(anterior.getProximo());
-			anterior.setProximo(novo);
+			No<E> anterior = this.getNo(index - 1);
+			novo.proximo = anterior.proximo;
+			anterior.proximo = novo;
 		}
 		this.tamanho++;
 	}
@@ -75,18 +75,18 @@ public class ListaLRD<E> implements Lista<E> {
 	@Override
 	public Object get(int index) {
 		validaIndice(index);
-		No atual = primeiro;
+		No<E> atual = primeiro;
 		for (int i = 0; i < index; i++) {
-			atual = atual.getProximo();
+			atual = atual.proximo;
 		}
-		return atual.getElemento();
+		return atual.elemento;
 	}
-	
-	private No getNo(int index) {
+
+	private No<E> getNo(int index) {
 		validaIndice(index);
-		No atual = primeiro;
+		No<E> atual = primeiro;
 		for (int i = 0; i < index; i++) {
-			atual = atual.getProximo();
+			atual = atual.proximo;
 		}
 		return atual;
 	}
@@ -108,12 +108,12 @@ public class ListaLRD<E> implements Lista<E> {
 	 */
 	@Override
 	public boolean contains(E e) {
-		No atual = primeiro;
+		No<E> atual = primeiro;
 		for (int i = 0; i < this.tamanho; i++) {
-			if (atual.getElemento().equals(e)) {
+			if (atual.elemento.equals(e)) {
 				return true;
 			}
-			atual = atual.getProximo();
+			atual = atual.proximo;
 		}
 		return false;
 	}
@@ -126,22 +126,22 @@ public class ListaLRD<E> implements Lista<E> {
 	@Override
 	public Object remove(int i) {
 		validaIndice(i);
-		No excluido = null;
+		No<E> excluido = null;
 		if (i == 0) {
 			excluido = primeiro;
-			this.primeiro = this.primeiro.getProximo();
+			this.primeiro = this.primeiro.proximo;
 			if (this.tamanho == 1) {
 				this.ultimo = this.primeiro;
 			}
 		} else if (i == this.tamanho - 1) {
 			excluido = this.ultimo;
-			No anterior = this.getNo(i - 1);
-			anterior.setProximo(null);
+			No<E> anterior = this.getNo(i - 1);
+			anterior.proximo = null;
 			this.ultimo = anterior;
 		} else {
-			No anterior = this.getNo(i - 1);
-			excluido = anterior.getProximo();
-			anterior.setProximo(excluido.getProximo());
+			No<E> anterior = this.getNo(i - 1);
+			excluido = anterior.proximo;
+			anterior.proximo = excluido.proximo;
 		}
 		this.tamanho--;
 		return excluido;
@@ -154,18 +154,18 @@ public class ListaLRD<E> implements Lista<E> {
 	 */
 	@Override
 	public boolean remove(Object obj) {
-		No atual = primeiro;
-		No anterior = null;
+		No<E> atual = primeiro;
+		No<E> anterior = null;
 		for (int i = 0; i < this.tamanho; i++) {
-			if (atual.getElemento().equals(obj)) {
+			if (atual.elemento.equals(obj)) {
 				if (anterior != null) {
-					anterior.setProximo(atual.getProximo());
-					if(anterior.getProximo() == null){
+					anterior.proximo = atual.proximo;
+					if (anterior.proximo == null) {
 						this.ultimo = anterior;
 					}
 				} else {
-					this.primeiro = this.primeiro.getProximo();
-					if(this.primeiro == null){
+					this.primeiro = this.primeiro.proximo;
+					if (this.primeiro == null) {
 						this.ultimo = null;
 					}
 				}
@@ -173,7 +173,7 @@ public class ListaLRD<E> implements Lista<E> {
 				return true;
 			}
 			anterior = atual;
-			atual = atual.getProximo();
+			atual = atual.proximo;
 		}
 		return false;
 	}
@@ -182,6 +182,20 @@ public class ListaLRD<E> implements Lista<E> {
 		if (i < 0 && i >= this.tamanho) {
 			throw new ArrayIndexOutOfBoundsException(
 					"Índice: " + i + ", Tamanho:: " + this.tamanho);
+		}
+	}
+
+	private static class No<T> {
+
+		private Object elemento;
+		private No<T> proximo;
+
+		/**
+		 * @param elemento
+		 * @param proximo
+		 */
+		public No(Object elemento) {
+			this.elemento = elemento;
 		}
 	}
 
