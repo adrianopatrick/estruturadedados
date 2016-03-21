@@ -93,4 +93,16 @@ public class ListaSRF<E> implements Lista<E> {
 		}
 	}
 
+	protected Object[] getElementos() {
+		return elementos;
+	}
+
+	protected void setElementos(Object[] elementos) {
+		this.elementos = elementos;
+	}
+
+	protected int getIndex() {
+		return index;
+	}
+
 }
