@@ -4,7 +4,7 @@ package br.edu.fanor.estruturadedados.cap2;
  * Algoritmo que implementa uma Lista Ligada ou Simplesmente Encadeada
  * Caracteristicas: - Rapida - Permite repetidos - Tamanho Dinâmico - Nao
  * Thread-Safe
- * 
+ * LRD - Ligada com repetição e dinâmica.
  * 
  * @author adrianopatrick@gmail.com
  * @since 29 de fev de 2016
@@ -192,7 +192,6 @@ public class ListaLRD<E> implements Lista<E> {
 
 		/**
 		 * @param elemento
-		 * @param proximo
 		 */
 		public No(Object elemento) {
 			this.elemento = elemento;

@@ -5,6 +5,7 @@ import br.edu.fanor.estruturadedados.cap1.BuscaLinear;
 /**
  * Algoritmo que implementa Lista Simples - Lista Linear em Alocação Sequencial
  * Caracteristicas: - Não Permite repetidos - Tamanho Variável - Nao Thread-Safe
+ * SNRD - Simples, Não Repete, Dinâmico
  * 
  * @author patrick.cunha
  * @since 19/02/2016
