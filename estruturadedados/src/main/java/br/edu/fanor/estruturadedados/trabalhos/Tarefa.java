@@ -9,15 +9,15 @@ import br.edu.fanor.estruturadedados.cap2.ListaDuplaLigada;
 public class Tarefa {
 	
 	/***/
-	private Integer tarefa;
+	private Integer idTarefa;
 	private Integer qtdaDependencias;
-	private ListaDuplaLigada<Integer> listaDependencias;
+	private ListaDuplaLigada<Tarefa> listaDependencias;
 	
-	public Integer getTarefa() {
-		return tarefa;
+	public Integer getIdTarefa() {
+		return idTarefa;
 	}
-	public void setTarefa(Integer tarefa) {
-		this.tarefa = tarefa;
+	public void setIdTarefa(Integer idTarefa) {
+		this.idTarefa = idTarefa;
 	}
 	public Integer getQtdaDependencias() {
 		return qtdaDependencias;
@@ -25,10 +25,10 @@ public class Tarefa {
 	public void setQtdaDependencias(Integer qtdaDependencias) {
 		this.qtdaDependencias = qtdaDependencias;
 	}
-	public ListaDuplaLigada<Integer> getListaDependencias() {
+	public ListaDuplaLigada<Tarefa> getListaDependencias() {
 		return listaDependencias;
 	}
-	public void setListaDependencias(ListaDuplaLigada<Integer> listaDependencias) {
+	public void setListaDependencias(ListaDuplaLigada<Tarefa> listaDependencias) {
 		this.listaDependencias = listaDependencias;
 	}
 	
