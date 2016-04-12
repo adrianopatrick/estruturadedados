@@ -1,4 +1,4 @@
-package br.edu.fanor.estruturadedados.lista01;
+package br.edu.fanor.estruturadedados.exercicios;
 
 /**
  * Classe que apresenta a solução para os exercícios 01, 02 e 03 da lista 01 da

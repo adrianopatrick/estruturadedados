@@ -5,7 +5,7 @@ import org.junit.Test;
 
 import br.edu.fanor.estruturadedados.cap2.Aluno;
 import br.edu.fanor.estruturadedados.cap2.Lista;
-import br.edu.fanor.estruturadedados.cap2.ListaLRD;
+import br.edu.fanor.estruturadedados.cap2.ListaLigada;
 
 public class TestListaLRD {
 
@@ -14,7 +14,7 @@ public class TestListaLRD {
 		Aluno a1 = new Aluno("N1", "Marcus");
 		Aluno a2 = new Aluno("N2", "Didi");
 		
-		Lista<Aluno> alunos = new ListaLRD<>();
+		Lista<Aluno> alunos = new ListaLigada<>();
 		alunos.add(a1);
 		alunos.add(a2);
 		
@@ -26,7 +26,7 @@ public class TestListaLRD {
 		Aluno a1 = new Aluno("N1", "Marcus");
 		Aluno a2 = new Aluno("N2", "Didi");
 		
-		Lista<Aluno> alunos = new ListaLRD<>();
+		Lista<Aluno> alunos = new ListaLigada<>();
 		alunos.add(a1);
 		alunos.add(0, a2);
 		
@@ -36,7 +36,7 @@ public class TestListaLRD {
 	
 	@Test
 	public void testSeListaVazia(){
-		Assert.assertTrue(new ListaLRD<>().isEmpty());
+		Assert.assertTrue(new ListaLigada<>().isEmpty());
 	}
 	
 	@Test
@@ -44,7 +44,7 @@ public class TestListaLRD {
 		Aluno a1 = new Aluno("N1", "Marcus");
 		Aluno a2 = new Aluno("N2", "Didi");
 		
-		Lista<Aluno> alunos = new ListaLRD<>();
+		Lista<Aluno> alunos = new ListaLigada<>();
 		alunos.add(a1);
 		alunos.add(0, a2);
 		
@@ -56,7 +56,7 @@ public class TestListaLRD {
 		Aluno a1 = new Aluno("N1", "Marcus");
 		Aluno a2 = new Aluno("N2", "Wagner");
 		
-		Lista<Aluno> alunos = new ListaLRD<>();
+		Lista<Aluno> alunos = new ListaLigada<>();
 		alunos.add(a1);
 		
 		Assert.assertFalse(alunos.contains(a2));
@@ -67,7 +67,7 @@ public class TestListaLRD {
 		Aluno a1 = new Aluno("N1", "Marcus");
 		Aluno a2 = new Aluno("N2", "Didi");
 		
-		Lista<Aluno> alunos = new ListaLRD<>();
+		Lista<Aluno> alunos = new ListaLigada<>();
 		alunos.add(a1);
 		alunos.add(0, a2);
 		

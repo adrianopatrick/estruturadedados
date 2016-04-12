@@ -9,7 +9,7 @@ package br.edu.fanor.estruturadedados.cap2;
  * @author adrianopatrick@gmail.com
  * @since 29 de fev de 2016
  */
-public class ListaLRD<E> implements Lista<E> {
+public class ListaLigada<E> implements Lista<E> {
 
 	private No<E> primeiro;
 	private No<E> ultimo;
