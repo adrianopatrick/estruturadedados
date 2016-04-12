@@ -6,6 +6,7 @@ import br.edu.fanor.estruturadedados.cap1.BuscaLinear;
  * Algoritmo que implementa Lista Simples - Lista Linear em Alocação Sequencial
  * Caracteristicas: - Rapida - Permite repetidos - Tamanho Fixo - Nao
  * Thread-Safe
+ * SRF - Simples, Repetido e Fixo
  * 
  * @author patrick.cunha
  * @since 19/02/2016
