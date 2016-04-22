@@ -11,7 +11,7 @@ import br.edu.fanor.estruturadedados.cap1.BuscaLinear;
  * @author patrick.cunha
  * @since 19/02/2016
  */
-public class ListaSRF<E> implements Lista<E> {
+public class ListaSimples<E> implements Lista<E> {
 
 	private Object[] elementos = new Object[100];
 	private int index = 0;

@@ -1,16 +1,22 @@
 package br.edu.fanor.estruturadedados.cap2;
 
 /**
+ * Algoritmo que implementa Lista Duplamente Encadeada(Ligada) Caracteristicas:
+ * - Permite repetidos - Tamanho Variável - Nao Thread-Safe DLRD - Duplamente
+ * Ligada, com repetidos e tamanho dinâmico
+ * 
  * @author adrianopatrick@gmail.com
  * @since 30 de mar de 2016
  */
-public class ListaDuplaLigada<E> implements Lista<E>{
+public class ListaDuplaLigada<E> implements Lista<E> {
 
 	private No<E> primeiro;
 	private No<E> ultimo;
 	private int tamanho;
-	
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see br.edu.fanor.estruturadedados.cap2.Lista#add(java.lang.Object)
 	 */
 	@Override
@@ -26,39 +32,65 @@ public class ListaDuplaLigada<E> implements Lista<E>{
 		tamanho++;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see br.edu.fanor.estruturadedados.cap2.Lista#add(int, java.lang.Object)
 	 */
 	@Override
-	public void add(int i, E e) {
-		// TODO Auto-generated method stub
-		
+	public void add(int index, E e) {
+		validaIndice(index);
+		No<E> novo = new No<>(e);
+		if(index == 0){
+			novo.proximo = this.primeiro;
+			this.primeiro.anterior = novo; 
+			this.primeiro = novo;
+			if (this.tamanho == 0) {
+				this.ultimo = this.primeiro;
+			}
+		} else if (index == this.size()){
+			this.add(e);
+		} else {
+			No<E> noAnterior = this.getNo(index - 1);
+			novo.proximo = noAnterior.proximo;
+			novo.anterior = noAnterior;
+			noAnterior.proximo = novo;
+		}
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see br.edu.fanor.estruturadedados.cap2.Lista#size()
 	 */
 	@Override
 	public int size() {
-		// TODO Auto-generated method stub
-		return 0;
+		return this.tamanho;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see br.edu.fanor.estruturadedados.cap2.Lista#get(int)
 	 */
 	@Override
-	public Object get(int i) {
-//		validaIndice(i);
+	public Object get(int index) {
+		validaIndice(index);
 		No<E> atual = primeiro;
-//		for (int i = 0; i < i; i++) {
-//			atual = atual.proximo;
-//		}
+		for (int i = 0; i < index; i++) {
+			atual = atual.proximo;
+		}
 		return atual.elemento;
 	}
 
+	private void validaIndice(int i) {
+		if (i < 0 && i >= this.tamanho) {
+			throw new ArrayIndexOutOfBoundsException("Índice: " + i + ", Tamanho:: " + this.tamanho);
+		}
+	}
+
 	private No<E> getNo(int index) {
-//		validaIndice(index);
+		validaIndice(index);
 		No<E> atual = primeiro;
 		for (int i = 0; i < index; i++) {
 			atual = atual.proximo;
@@ -66,43 +98,91 @@ public class ListaDuplaLigada<E> implements Lista<E>{
 		return atual;
 	}
 
-
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see br.edu.fanor.estruturadedados.cap2.Lista#isEmpty()
 	 */
 	@Override
 	public boolean isEmpty() {
-		// TODO Auto-generated method stub
-		return false;
+		return this.size() == 0;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see br.edu.fanor.estruturadedados.cap2.Lista#contains(java.lang.Object)
 	 */
 	@Override
 	public boolean contains(E e) {
-		// TODO Auto-generated method stub
+		No<E> atual = primeiro;
+		for (int i = 0; i < this.tamanho; i++) {
+			if (atual.elemento.equals(e)) {
+				return true;
+			}
+			atual = atual.proximo;
+		}
 		return false;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see br.edu.fanor.estruturadedados.cap2.Lista#remove(int)
 	 */
 	@Override
 	public Object remove(int i) {
-		// TODO Auto-generated method stub
-		return null;
+		validaIndice(i);
+		No<E> excluido = null;
+		if (i == 0) {
+			excluido = primeiro;
+			this.primeiro = this.primeiro.proximo;
+			if (this.tamanho == 1) {
+				this.ultimo = this.primeiro;
+			}
+		} else if (i == this.tamanho - 1) {
+			excluido = this.ultimo;
+			this.ultimo.anterior.proximo = null;
+			this.ultimo = this.ultimo.anterior;
+		} else {
+			excluido = this.getNo(i);
+			excluido.anterior.proximo = excluido.proximo;
+			excluido.proximo.anterior = excluido.anterior;
+		}
+		this.tamanho--;
+		return excluido;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see br.edu.fanor.estruturadedados.cap2.Lista#remove(java.lang.Object)
 	 */
 	@Override
 	public boolean remove(Object obj) {
-		// TODO Auto-generated method stub
+		No<E> atual = primeiro;
+		for (int i = 0; i < this.tamanho; i++) {
+			if (atual.elemento.equals(obj)) {
+				if (atual.anterior != null) {
+					atual.anterior.proximo = atual.proximo;
+					atual.proximo.anterior = atual.anterior;
+					if (atual.anterior.proximo == null) {
+						this.ultimo = atual.anterior;
+					}
+				} else {
+					this.primeiro = this.primeiro.proximo;
+					if (this.primeiro == null) {
+						this.ultimo = null;
+					}
+				}
+				this.tamanho--;
+				return true;
+			}
+			atual = atual.proximo;
+		}
 		return false;
 	}
-	
+
 	private static class No<T> {
 
 		private No<T> anterior;

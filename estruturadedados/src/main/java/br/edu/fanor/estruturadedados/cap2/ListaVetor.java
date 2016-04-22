@@ -10,7 +10,7 @@ import br.edu.fanor.estruturadedados.cap1.BuscaLinear;
  * @author patrick.cunha
  * @since 19/02/2016
  */
-public class ListaSNRD<E> extends ListaSRF<E> implements Lista<E> {
+public class ListaVetor<E> extends ListaSimples<E> implements Lista<E> {
 
 	@Override
 	public void add(E e) {
