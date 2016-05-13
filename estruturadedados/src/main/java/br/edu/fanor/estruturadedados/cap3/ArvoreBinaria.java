@@ -110,11 +110,7 @@ public class ArvoreBinaria<T> {
 	protected No<T> buscaPai(Object el) {
 		No<T> p = raiz;
 		No<T> prev = null;
-		while (p != null && !(comparator.compare(p.valor, el) == 0)) { // acha o
-																		// nó p
-																		// com a
-																		// chave
-																		// el
+		while (p != null && !(comparator.compare(p.valor, el) == 0)) { 
 			prev = p;
 			if (comparator.compare(p.valor, el) > 0)
 				p = p.noDireito;
