@@ -192,7 +192,6 @@ public class ListaLigada<E> implements Lista<E> {
 
 		/**
 		 * @param elemento
-		 * @param proximo
 		 */
 		public No(Object elemento) {
 			this.elemento = elemento;

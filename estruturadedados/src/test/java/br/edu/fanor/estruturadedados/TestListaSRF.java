@@ -5,7 +5,7 @@ import org.junit.Test;
 
 import br.edu.fanor.estruturadedados.cap2.Aluno;
 import br.edu.fanor.estruturadedados.cap2.Lista;
-import br.edu.fanor.estruturadedados.cap2.ListaSRF;
+import br.edu.fanor.estruturadedados.cap2.ListaSimples;
 
 public class TestListaSRF {
 
@@ -14,7 +14,7 @@ public class TestListaSRF {
 		Aluno a1 = new Aluno("N1", "Marcus");
 		Aluno a2 = new Aluno("N2", "Didi");
 		
-		Lista<Aluno> alunos = new ListaSRF<>();
+		Lista<Aluno> alunos = new ListaSimples<>();
 		alunos.add(a1);
 		alunos.add(a2);
 		
@@ -26,7 +26,7 @@ public class TestListaSRF {
 		Aluno a1 = new Aluno("N1", "Marcus");
 		Aluno a2 = new Aluno("N2", "Didi");
 		
-		Lista<Aluno> alunos = new ListaSRF<>();
+		Lista<Aluno> alunos = new ListaSimples<>();
 		alunos.add(a1);
 		alunos.add(0, a2);
 		
@@ -36,12 +36,12 @@ public class TestListaSRF {
 	
 	@Test(expected=ArrayIndexOutOfBoundsException.class)
 	public void testInsercaoEmPosicaoInexistente(){
-		new ListaSRF<>().add(100, new Aluno("x", "x"));
+		new ListaSimples<>().add(100, new Aluno("x", "x"));
 	}
 	
 	@Test(expected=StackOverflowError.class)
 	public void testInsercaoEmPosicaoQuandoNaoExisteMaisEspaco(){
-		Lista<Aluno> alunos = new ListaSRF<>();
+		Lista<Aluno> alunos = new ListaSimples<>();
 		for (int i = 0; i < 100; i++) {
 			alunos.add(new Aluno("x", "y"));
 		}
@@ -51,7 +51,7 @@ public class TestListaSRF {
 	
 	@Test
 	public void testSeListaVazia(){
-		Assert.assertTrue(new ListaSRF<>().isEmpty());
+		Assert.assertTrue(new ListaSimples<>().isEmpty());
 	}
 	
 	@Test
@@ -59,7 +59,7 @@ public class TestListaSRF {
 		Aluno a1 = new Aluno("N1", "Marcus");
 		Aluno a2 = new Aluno("N2", "Didi");
 		
-		Lista<Aluno> alunos = new ListaSRF<>();
+		Lista<Aluno> alunos = new ListaSimples<>();
 		alunos.add(a1);
 		alunos.add(0, a2);
 		
@@ -71,7 +71,7 @@ public class TestListaSRF {
 		Aluno a1 = new Aluno("N1", "Marcus");
 		Aluno a2 = new Aluno("N2", "Wagner");
 		
-		Lista<Aluno> alunos = new ListaSRF<>();
+		Lista<Aluno> alunos = new ListaSimples<>();
 		alunos.add(a1);
 		
 		Assert.assertFalse(alunos.contains(a2));
@@ -82,7 +82,7 @@ public class TestListaSRF {
 		Aluno a1 = new Aluno("N1", "Marcus");
 		Aluno a2 = new Aluno("N2", "Didi");
 		
-		Lista<Aluno> alunos = new ListaSRF<>();
+		Lista<Aluno> alunos = new ListaSimples<>();
 		alunos.add(a1);
 		alunos.add(0, a2);
 		
