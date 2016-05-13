@@ -24,19 +24,14 @@ public class ArvoreAVL {
 		return raiz;
 	}
 
-	/** Retorna a altura da árvore */
 	private static int getAltura(No t) {
 		return t == null ? -1 : t.altura;
 	}
 
-	/**
-	 * Retorna o maior valor ente lhs e rhs.
-	 */
 	private static int max(int lhs, int rhs) {
 		return lhs > rhs ? lhs : rhs;
 	}
 
-	/** Retorna o fator de balanceamento da árvore com raiz t */
 	private int getFator(No t) {
 		return getAltura(t.esquerdo) - getAltura(t.direito);
 	}
@@ -73,7 +68,6 @@ public class ArvoreAVL {
 		return t;
 	}
 
-	/** Faz Rotação simples a direita */
 	private static No rotacaoADireita(No k2) {
 		No k1 = k2.esquerdo;
 		k2.esquerdo = k1.direito;
@@ -83,7 +77,6 @@ public class ArvoreAVL {
 		return k1;
 	}
 
-	/** Rotação simples à esquerda */
 	private static No rotacaoAEsquerda(No k1) {
 		No k2 = k1.direito;
 		k1.direito = k2.esquerdo;
@@ -93,13 +86,11 @@ public class ArvoreAVL {
 		return k2;
 	}
 
-	/** Rotação dupla à direita */
 	private static No duplaRotacaoADireita(No k3) {
 		k3.esquerdo = rotacaoAEsquerda(k3.esquerdo);
 		return rotacaoADireita(k3);
 	}
 
-	/** Rotação dupla à esquerda */
 	private static No duplaRotacaoAEsquerda(No k1) {
 		k1.direito = rotacaoADireita(k1.direito);
 		return rotacaoAEsquerda(k1);
@@ -111,23 +102,13 @@ public class ArvoreAVL {
 
 	protected No buscarValor(No p, int chave) {
 		while (p != null) {
-			/* se valor procuradp == chave do nó retorna referência ao nó */
 			if (chave == p.valor)
 				return p;
-			/*
-			 * se valor procurado < chave do nó, procurar na sub-árvore esquerda
-			 * deste nó
-			 */
 			else if (chave < p.valor)
 				p = p.esquerdo;
-			/*
-			 * se valor procurado > chave do nó, procurar na sub-árvore direita
-			 * deste nó
-			 */
 			else
 				p = p.direito;
 		}
-		// caso chave não foi achada, retorna null
 		return null;
 	}
 
