@@ -35,8 +35,17 @@ package br.edu.fanor.estruturadedados.trabalhos;
  *				4, 2, 3, 1, 5
  */
 
-import java.io.*;
-import java.util.*;
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.PrintWriter;
+import java.io.Reader;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.StringTokenizer;
+import java.util.stream.Stream;
 
 import br.edu.fanor.estruturadedados.cap2.Fila;
 import br.edu.fanor.estruturadedados.cap2.ListaDuplaLigada;
@@ -51,15 +60,18 @@ public class OrdenacaoTopologica {
 	private static List<Problema> problemas = new ArrayList<>();
 
 	public static void main(String[] args) throws IOException {
-		processa(args[0]);
+		// recebe o arquivo via argumentos ou ler o arquivo padrão da sua pasta
+		InputStream input = args.length > 0 ? new FileInputStream(args[0])
+				: OrdenacaoTopologica.class.getResourceAsStream("entrada.in");
+		processa(new java.io.InputStreamReader(input));
 		System.exit(0);
 	}
 
 	/**
 	 * Método principal
 	 */
-	private static void processa(String file) {
-		entrada(file);
+	private static void processa(Reader readerInput) {
+		entrada(readerInput);
 		ordena();
 		saida();
 	}
@@ -67,87 +79,129 @@ public class OrdenacaoTopologica {
 	/**
 	 * Processa a entrada
 	 */
-	private static void entrada(String file) {
-
-		try (BufferedReader br = new BufferedReader(new FileReader(file))) {
-			String linha;
-			while ((linha = br.readLine()) != null) {
+	private static void entrada(Reader readerInput) {
+		try (BufferedReader br = new BufferedReader(readerInput)) {
+			Stream<String> linhas = br.lines();
+			linhas.forEach((linha) -> {
 				List<Tarefa> tarefas = criaTarefas(new StringTokenizer(
 						linha.replaceAll(" ", ""), DELIMITADORES));
 				Problema problema = new Problema();
 				problema.getTarefasEntrada().addAll(tarefas);
 				problemas.add(problema);
-			}
+			});
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-
 	}
 
-	/**
-	 * 
-	 */
 	private static List<Tarefa> criaTarefas(StringTokenizer token) {
 
 		List<Tarefa> tarefas = new ArrayList<>();
+		List<String> dependencias = new ArrayList<>();
+
 		int qtdaTarefas = Integer.parseInt(token.nextToken());
-		String[] dependencias = new String[token.countTokens()];
-		for (int i = 0; i < dependencias.length; i++) {
-			dependencias[i] = token.nextToken();
+		int qtdaTokens = token.countTokens();
+
+		for (int i = 0; i < qtdaTokens; i++) {
+			dependencias.add(token.nextToken());
 		}
 
 		for (int i = 0; i < qtdaTarefas; i++) {
 			Tarefa tarefa = new Tarefa();
 			tarefa.setIdTarefa(i + 1);
+			tarefas.add(tarefa);
+		}
+
+		for (Tarefa tarefa : tarefas) {
 			tarefa.setQtdaDependencias(retornaQuantidadeDeDependencias(
 					dependencias, tarefa.getIdTarefa()));
 			tarefa.setListaDependencias(retornaListaDeDependencias(dependencias,
-					tarefa.getIdTarefa()));
-			tarefas.add(tarefa);
+					tarefa.getIdTarefa(), tarefas));
 		}
 
 		return tarefas;
 	}
 
-	// TODO implementarar
-	private static int retornaQuantidadeDeDependencias(String[] dependencias,
-			Integer idTarefa) {
-		return 0;
+	private static int retornaQuantidadeDeDependencias(
+			List<String> dependencias, Integer idTarefa) {
+
+		return new Long(dependencias.stream()
+				.filter(dependencia -> idTarefa
+						.equals(Integer.parseInt(dependencia.split(",")[1])))
+				.count()).intValue();
 	}
 
-	// TODO implementarar
 	private static ListaDuplaLigada<Tarefa> retornaListaDeDependencias(
-			String[] dependencias, Integer idTarefa) {
-		return null;
+			List<String> dependentes, Integer idTarefa, List<Tarefa> tarefas) {
+
+		ListaDuplaLigada<Tarefa> listaDeDependentes = new ListaDuplaLigada<>();
+
+		dependentes.stream()
+				.filter(dependente -> idTarefa
+						.equals(Integer.parseInt(dependente.split(",")[0])))
+				.forEach(dependente -> {
+					listaDeDependentes.add(tarefas.stream()
+							.filter(tarefa -> tarefa.getIdTarefa()
+									.equals(Integer.parseInt(
+											dependente.split(",")[1])))
+							.findFirst().get());
+				});
+
+		return listaDeDependentes;
 	}
 
 	/**
 	 * Método que realiza a ordenação topológica.
-	 */// TODO implementarar
+	 */
 	private static void ordena() {
 
-		Fila<Tarefa> fila = new Fila<>();
+		for (Problema problema : problemas) {
+			Fila<Tarefa> fila = new Fila<>();
+			List<Tarefa> saida = new ArrayList<>();
+			problema.getTarefasEntrada().stream()
+					.filter(tarefa -> tarefa.getQtdaDependencias().equals(0))
+					.forEach(tarefa -> fila.queue(tarefa));
+
+			while (fila.size() > 0) {
+
+				Tarefa tarefa = (Tarefa) fila.getLista().get(0);
+
+				if (tarefa.getListaDependencias() != null) {
+					for (int i = 0; i < tarefa.getListaDependencias()
+							.size(); i++) {
+						Tarefa tarefaDep = (Tarefa) tarefa
+								.getListaDependencias().get(i);
+						tarefaDep.setQtdaDependencias(
+								tarefaDep.getQtdaDependencias() - 1);
+						if (tarefaDep.getQtdaDependencias().equals(0)) {
+							fila.queue(tarefaDep);
+						}
+					}
+				}
+				saida.add(tarefa);
+				fila.dequeue();
+			}
+			problema.setTarefasSaida(saida);
+		}
+
 	}
 
 	/**
 	 * Processa a saída
 	 */
 	private static void saida() {
-
 		try (PrintWriter arquivo = new PrintWriter(
 				new FileWriter("saida.out", true))) {
-			for (Problema problema : problemas) {
-				for (Tarefa tarefa : problema.getTarefasSaida()) {
+			problemas.forEach(problema -> {
+				problema.getTarefasSaida().forEach(tarefa -> {
 					arquivo.append((tarefa.getIdTarefa()) + ", ");
-				}
+					System.out.print(tarefa.getIdTarefa() + " ");
+				});
 				arquivo.printf("\r\n");
 				System.out.println();
-			}
+			});
 		} catch (IOException e) {
 			System.out.println("deu erro");
-			e.printStackTrace();
 		}
-
 	}
-
 }

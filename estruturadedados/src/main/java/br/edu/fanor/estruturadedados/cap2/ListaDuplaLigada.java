@@ -14,6 +14,12 @@ public class ListaDuplaLigada<E> implements Lista<E> {
 	private No<E> ultimo;
 	private int tamanho;
 
+	public void addAll(ListaDuplaLigada<E> lista) {
+		for (int i = 0; i < lista.size(); i++) {
+			this.add(lista.getNo(i));
+		}
+	}
+
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -22,6 +28,17 @@ public class ListaDuplaLigada<E> implements Lista<E> {
 	@Override
 	public void add(E e) {
 		No<E> novo = new No<>(e);
+		if (this.tamanho == 0) {
+			primeiro = novo;
+		} else {
+			ultimo.proximo = novo;
+			novo.anterior = ultimo;
+		}
+		ultimo = novo;
+		tamanho++;
+	}
+	
+	public void add(No<E> novo) {
 		if (this.tamanho == 0) {
 			primeiro = novo;
 		} else {
@@ -41,14 +58,14 @@ public class ListaDuplaLigada<E> implements Lista<E> {
 	public void add(int index, E e) {
 		validaIndice(index);
 		No<E> novo = new No<>(e);
-		if(index == 0){
+		if (index == 0) {
 			novo.proximo = this.primeiro;
-			this.primeiro.anterior = novo; 
+			this.primeiro.anterior = novo;
 			this.primeiro = novo;
 			if (this.tamanho == 0) {
 				this.ultimo = this.primeiro;
 			}
-		} else if (index == this.size()){
+		} else if (index == this.size()) {
 			this.add(e);
 		} else {
 			No<E> noAnterior = this.getNo(index - 1);
@@ -85,7 +102,8 @@ public class ListaDuplaLigada<E> implements Lista<E> {
 
 	private void validaIndice(int i) {
 		if (i < 0 && i >= this.tamanho) {
-			throw new ArrayIndexOutOfBoundsException("Índice: " + i + ", Tamanho:: " + this.tamanho);
+			throw new ArrayIndexOutOfBoundsException(
+					"Índice: " + i + ", Tamanho:: " + this.tamanho);
 		}
 	}
 

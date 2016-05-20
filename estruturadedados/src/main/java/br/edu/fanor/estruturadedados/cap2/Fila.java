@@ -18,4 +18,12 @@ public class Fila<E> {
 	public Object dequeue(){
 		return lista.remove(0);
 	}
+	
+	public int size(){
+		return lista.size();
+	}
+	
+	public Lista<E> getLista() {
+		return lista;
+	}
 }
