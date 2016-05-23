@@ -11,6 +11,12 @@ Repositório com os algorítmos desenvolvidos na disciplina de Estrutura de Dado
  - Lista Sequencial (Aula: 19/02/2016 / 26/02/2016)
  - Lista Sequencial [sem repetição e tamanho dinâmico]
  - Lista Simplemente Encadeada (Aula: 04/03/2016)
+ - Lista Duplamente Encadeada
+ - Fila
+ - Pilha
+ - Arvore Binária
+ - Arvore AVL
+ - Algoritmo de Ordenação Topológica
  
 <b>Ementa da Disciplina:</b></br>
   - Algoritmos
