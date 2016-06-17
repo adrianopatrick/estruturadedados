@@ -52,6 +52,7 @@ import java.util.StringTokenizer;
  * deve ser deixada em branco. A grafia mostrada no Exemplo de Saída, abaixo,
  * deve ser seguida rigorosamente. Problema SALDO
  * 
+ * Para testes execute: java Main < entrada.in no terminal
  * 
  * @author adrianopatrick@gmail.com
  * @since 17 de jun de 2016

@@ -23,6 +23,7 @@ import java.io.InputStreamReader;
  * Restrições
  * 0 ≤ N ≤ 50 |X| ≤ 5000
  * 
+ * Para testes execute: java Main < entrada.in no terminal
  * 
  * @author adrianopatrick@gmail.com
  * @since 17 de jun de 2016
