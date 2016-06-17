@@ -17,6 +17,7 @@ Repositório com os algorítmos desenvolvidos na disciplina de Estrutura de Dado
  - Arvore Binária
  - Arvore AVL
  - Algoritmo de Ordenação Topológica
+ - Algoritmos de Maratona de Programação(SOMA, SALDO)
  
 <b>Ementa da Disciplina:</b></br>
   - Algoritmos
